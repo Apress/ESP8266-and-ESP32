@@ -4,7 +4,7 @@
  * Created on:  October 2020
  * Author:      Neil Cameron
  * Book:        Electronics Projects with the ESP8266 and ESP32
- * Chapter :    Chapter 1 - Internet radio
+ * Chapter :    1 - Internet radio
  ******************************************************************************/
  
 #include <vs1053_ext.h>          // include ESP32 VS1053_ext
