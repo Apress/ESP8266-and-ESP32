@@ -7,7 +7,7 @@
  * Chapter :    5 - MP3 player
  ******************************************************************************/
 
-#include <IRremote.h>          // include IRremote library
+#include <IRremote.h>          // include IRremote library version 2.8.0
 int IRpin = 23;           // IR receiver pin
 IRrecv irrecv(IRpin);
 decode_results reading;
