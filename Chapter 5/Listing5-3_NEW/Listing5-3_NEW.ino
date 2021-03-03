@@ -6,8 +6,8 @@
  * Book:        Electronics Projects with the ESP8266 and ESP32
  * Chapter :    5 - MP3 player
  ******************************************************************************/
-#include <IRremote.h>     // include IRremote library version 3.0.1
-int IRpin = 23;           // IR receiver pin
+#include <IRremote.h>     // include IRremote library version 3.0.2
+int IRpin = 21;           // IR receiver pin
 String prot[] = {"UNKNOWN","DENON","DISH","JVC","LG","NEC","PANASONIC","KASEIKYO",
                 "KASEIKYO_JVC","KASEIKYO_DENON","KASEIKYO_SHARP","KASEIKYO_MITSUBISHI",
                 "RC5","RC6","SAMSUNG","SHARP","SONY","APPLE","BOSEWAVE","LEGO_PF",
@@ -22,9 +22,13 @@ void loop()
 {
   if(IrReceiver.decode())
   {
-//    IrReceiver.printIRResultShort(&Serial);                  // signal summary
+    IrReceiver.printIRResultMinimal(&Serial);// two signal summaries
+    if(IrReceiver.decodedIRData.protocol != 0) Serial.println();
+    IrReceiver.printIRResultShort(&Serial);
     Serial.print(prot[IrReceiver.decodedIRData.protocol]);   // display protocol,
-    Serial.print("\t0x");Serial.print(IrReceiver.decodedIRData.command, HEX);       // signal HEX code
+    Serial.print("\t0x");
+    if(IrReceiver.decodedIRData.protocol == 0) Serial.print(IrReceiver.decodedIRData.decodedRawData, HEX);
+    else Serial.print(IrReceiver.decodedIRData.command, HEX);       // signal HEX code
     Serial.print("\tBits ");Serial.println(IrReceiver.decodedIRData.numberOfBits);  //  and bit number
     delay(200);                        // delay before next IR signal
     IrReceiver.resume();               // receive the next value
