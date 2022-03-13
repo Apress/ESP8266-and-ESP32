@@ -25,8 +25,8 @@ void setup()
 {
   WiFi.mode(WIFI_AP);         // Wi-Fi AP mode
   delay(1000);            // setup AP mode
-  WiFi.softAP(ssidAP, passwordAP);      // initialise Wi-Fi with
   WiFi.softAPConfig(local_ip, gateway, subnet); //  predefined IP address
+  WiFi.softAP(ssidAP, passwordAP);      // initialise Wi-Fi
   server.begin();           // initialise server
   server.on("/", base);         // load default webpage
   server.on("/LEDGurl", LEDGfunct);       // map URLs to functions:
